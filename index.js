@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Kar = require("./models/kars");
 let app = express();
-mongoose.connect("mongodb://localhost:27017/karsDB", {
+mongoose.connect("mongodb://localhost:27017/carsDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -25,4 +25,5 @@ app.get("/model", (req, res) => {
 app.get("/variant", (req, res) => {
   res.render("variant");
 });
+
 app.listen(PORT, () => console.log("server started @port 3000"));

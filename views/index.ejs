@@ -4,4 +4,45 @@
   <a href="/model" class="btn btn-primary btn-lg">Model</a>
   <a href="/variant" class="btn btn-primary btn-lg">Variant</a>
 </div>
+<div class="container">
+  <form method="POST" action="/index">
+    <div class="row">
+      <div class="col-sm-3">
+        <label for="exampleInputBrand1" class="form-label">Brand</label>
+        <input
+          type="brand"
+          name="brand"
+          class="form-control"
+          id="exampleInputBrand1"
+          aria-describedby="brandHelp"
+          placeholder="select brand"
+        />
+      </div>
+      <div class="col-sm-3">
+        <label for="exampleInputModel1" class="form-label">Model</label>
+        <input
+          type="model"
+          name="model"
+          class="form-control"
+          id="exampleInputModel1"
+          placeholder="select model"
+        />
+      </div>
+      <div class="col-sm-3">
+        <label for="exampleInputVariant1" class="form-label">Variant</label>
+        <input
+          type="variant"
+          name="variant"
+          class="form-control"
+          id="exampleInputVariant1"
+          placeholder="select variant"
+        />
+      </div>
+      <div class="col-sm-2">
+        <label class="form-label"></label>
+        <button type="search" class="btn btn-primary">search</button>
+      </div>
+    </div>
+  </form>
+</div>
 <%- include('partials/footer') %>
