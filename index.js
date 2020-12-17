@@ -25,5 +25,18 @@ app.get("/model", (req, res) => {
 app.get("/variant", (req, res) => {
   res.render("variant");
 });
+app.post("/brand", (req, res) => {
+  const brand = req.body.brand;
+  const model = req.body.model;
+  const variant = req.body.variant;
+  const newKar = new Kar({
+    brand: brand,
+    model: model,
+    variant: variant,
+  });
+  newKar.save((err) => {
+    err ? console.log(err) : res.send("new car created succesfully");
+  });
+});
 
 app.listen(PORT, () => console.log("server started @port 3000"));
