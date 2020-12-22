@@ -25,6 +25,7 @@ app.get("/model", (req, res) => {
 app.get("/variant", (req, res) => {
   res.render("variant");
 });
+
 app.post("/index", (req, res) =>
   /*async function () {
       const brand = req.body.brand;
@@ -55,7 +56,45 @@ app.post("/index", (req, res) =>
     });
   }
 );
-app.post("/brand", (req, res) => {
+app.get("/index/:brand", (req, res) => {
+  Kar.find({ brand: req.params.brand }, (err, foundResults) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(foundResults);
+    }
+  });
+});
+app.get("/index/:brand/:model", (req, res) => {
+  Kar.find(
+    { brand: req.params.brand, model: req.params.model },
+    (err, foundResults) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(foundResults);
+      }
+    }
+  );
+});
+app.get("/index/:brand/:model/:variant", (req, res) => {
+  Kar.find(
+    {
+      brand: req.params.brand,
+      model: req.params.model,
+      variant: req.params.variant,
+    },
+    (err, foundResults) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(foundResults);
+      }
+    }
+  );
+});
+
+/*app.post("/brand", (req, res) => {
   const brand = req.body.brand;
   const model = req.body.model;
   const variant = req.body.variant;
@@ -67,7 +106,7 @@ app.post("/brand", (req, res) => {
   newKar.save((err) => {
     err ? console.log(err) : res.send("new car created succesfully");
   });
-});
+});*/
 
 /*app.post("/model", (req, res) => {
   const brand = req.body.brand;
