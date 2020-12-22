@@ -25,6 +25,26 @@ app.get("/model", (req, res) => {
 app.get("/variant", (req, res) => {
   res.render("variant");
 });
+app.post("/index", (req, res) =>
+  /*async function () {
+      const brand = req.body.brand;
+      const findResult = await Kars.find({
+        brand: brand,
+        
+      });
+      console.log
+      await cursor.forEach(console.log("ho"));*/
+  {
+    const brand = req.body.brand;
+    Kar.findOne({ brand: brand }, (err, foundResults) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log([foundResults]);
+      }
+    });
+  }
+);
 app.post("/brand", (req, res) => {
   const brand = req.body.brand;
   const model = req.body.model;
@@ -38,7 +58,8 @@ app.post("/brand", (req, res) => {
     err ? console.log(err) : res.send("new car created succesfully");
   });
 });
-app.post("/model", (req, res) => {
+
+/*app.post("/model", (req, res) => {
   const brand = req.body.brand;
 
   Kar.findOne({ brand: brand }, (err, foundResults) => {
@@ -57,6 +78,6 @@ app.post("/model", (req, res) => {
       });
     }
   });
-});
+});*/
 
 app.listen(PORT, () => console.log("server started @port 3000"));
