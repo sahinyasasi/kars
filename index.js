@@ -25,7 +25,7 @@ app.get("/model", (req, res) => {
 app.get("/variant", (req, res) => {
   res.render("variant");
 });
-/*app.post("/brand", (req, res) => {
+app.post("/brand", (req, res) => {
   const brand = req.body.brand;
   const model = req.body.model;
   const variant = req.body.variant;
@@ -37,7 +37,7 @@ app.get("/variant", (req, res) => {
   newKar.save((err) => {
     err ? console.log(err) : res.send("new car created succesfully");
   });
-});*/
+});
 app.post("/model", (req, res) => {
   const brand = req.body.brand;
 
