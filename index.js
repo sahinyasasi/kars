@@ -34,13 +34,23 @@ app.post("/index", (req, res) =>
       });
       console.log
       await cursor.forEach(console.log("ho"));*/
+
   {
     const brand = req.body.brand;
-    Kar.findOne({ brand: brand }, (err, foundResults) => {
+    const model = req.body.model;
+    Kar.find({ brand: brand }, (err, foundResults) => {
       if (err) {
         console.log(err);
       } else {
-        console.log([foundResults]);
+        const account = foundResults.find((acc) => acc.model === model);
+        console.log(account);
+
+        /*foundResults.forEach((element) => {
+          //console.log([foundResults]);
+          if (element.model === model) {
+            console.log(element);
+          }
+        });*/
       }
     });
   }
