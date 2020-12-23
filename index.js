@@ -13,7 +13,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
+app.get("/index", (req, res) => {
   res.render("index");
 });
 app.get("/brand", (req, res) => {
@@ -25,7 +25,7 @@ app.get("/model", (req, res) => {
 app.get("/variant", (req, res) => {
   res.render("variant");
 });
-
+//to search a car
 app.post("/index", (req, res) =>
   /*async function () {
       const brand = req.body.brand;
@@ -39,12 +39,13 @@ app.post("/index", (req, res) =>
   {
     const brand = req.body.brand;
     const model = req.body.model;
+    const variant = req.body.variant;
+
     Kar.find({ brand: brand }, (err, foundResults) => {
       if (err) {
         console.log(err);
       } else {
-        const account = foundResults.find((acc) => acc.model === model);
-        console.log(account);
+        console.log(foundResults);
 
         /*foundResults.forEach((element) => {
           //console.log([foundResults]);
@@ -56,6 +57,8 @@ app.post("/index", (req, res) =>
     });
   }
 );
+
+//to get particular brand
 app.get("/index/:brand", (req, res) => {
   Kar.find({ brand: req.params.brand }, (err, foundResults) => {
     if (err) {
@@ -65,6 +68,7 @@ app.get("/index/:brand", (req, res) => {
     }
   });
 });
+//to get a particular model
 app.get("/index/:brand/:model", (req, res) => {
   Kar.find(
     { brand: req.params.brand, model: req.params.model },
@@ -77,6 +81,7 @@ app.get("/index/:brand/:model", (req, res) => {
     }
   );
 });
+//to get particular variant
 app.get("/index/:brand/:model/:variant", (req, res) => {
   Kar.find(
     {
@@ -93,8 +98,8 @@ app.get("/index/:brand/:model/:variant", (req, res) => {
     }
   );
 });
-
-/*app.post("/brand", (req, res) => {
+//to add a brand
+app.post("/brand", (req, res) => {
   const brand = req.body.brand;
   const model = req.body.model;
   const variant = req.body.variant;
@@ -106,8 +111,8 @@ app.get("/index/:brand/:model/:variant", (req, res) => {
   newKar.save((err) => {
     err ? console.log(err) : res.send("new car created succesfully");
   });
-});*/
-
+});
+//to add model
 app.post("/model", (req, res) => {
   const brand = req.body.brand;
 
@@ -123,6 +128,28 @@ app.post("/model", (req, res) => {
       });
       newKar.save((err) => {
         err ? console.log(err) : res.send("new car model created succesfully");
+      });
+    }
+  });
+});
+//to add variant
+app.post("/variant", (req, res) => {
+  const model = req.body.model;
+  const brand = req.body.brand;
+
+  Kar.findOne({ brand: brand, model: model }, (err, foundResults) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const variant = req.body.variant;
+      const newKar = new Kar({
+        model: model,
+        variant: variant,
+      });
+      newKar.save((err) => {
+        err
+          ? console.log(err)
+          : res.send("new car variant created succesfully");
       });
     }
   });
