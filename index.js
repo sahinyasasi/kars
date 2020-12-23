@@ -13,6 +13,9 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+app.get("/", (req, res) => {
+  res.render("index");
+});
 app.get("/index", (req, res) => {
   res.render("index");
 });
@@ -100,6 +103,7 @@ app.get("/index/:brand/:model/:variant", (req, res) => {
 });
 //to add a brand
 app.post("/brand", (req, res) => {
+  console.log(req.body);
   const brand = req.body.brand;
   const model = req.body.model;
   const variant = req.body.variant;
@@ -114,6 +118,7 @@ app.post("/brand", (req, res) => {
 });
 //to add model
 app.post("/model", (req, res) => {
+  console.log(req.body);
   const brand = req.body.brand;
 
   Kar.findOne({ brand: brand }, (err, foundResults) => {
@@ -134,6 +139,7 @@ app.post("/model", (req, res) => {
 });
 //to add variant
 app.post("/variant", (req, res) => {
+  console.log(req.body);
   const model = req.body.model;
   const brand = req.body.brand;
 
