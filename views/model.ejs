@@ -4,14 +4,20 @@
     <div class="row">
       <div class="col-sm-3">
         <label for="exampleInputBrand1" class="form-label">Brand</label>
-        <input
+
+        <select
           type="brand"
           name="brand"
-          class="form-control"
-          id="exampleInputBrand1"
-          aria-describedby="brandHelp"
+          class="form-select"
           placeholder="select brand"
-        />
+          aria-describedby="brandHelp"
+        >
+          <% if (Kar) { %> <% Kar.forEach(function (Kar) { %>
+
+          <option><%= Kar.brand %></option>
+
+          <% }) %> <% } %>
+        </select>
       </div>
       <div class="col-sm-3">
         <label for="exampleInputModel1" class="form-label">Model</label>

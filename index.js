@@ -23,7 +23,13 @@ app.get("/brand", (req, res) => {
   res.render("brand");
 });
 app.get("/model", (req, res) => {
-  res.render("model");
+  Kar.find((err, docs) => {
+    if (!err) {
+      res.render("model", { Kar: docs });
+    } else {
+      console.log("Error in retrieving brand list :" + err);
+    }
+  });
 });
 app.get("/variant", (req, res) => {
   res.render("variant");
@@ -162,3 +168,4 @@ app.post("/variant", (req, res) => {
 });
 
 app.listen(PORT, () => console.log("server started @port 3000"));
+module.exports = app;
