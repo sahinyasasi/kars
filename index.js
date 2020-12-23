@@ -108,7 +108,7 @@ app.get("/index/:brand/:model/:variant", (req, res) => {
   });
 });*/
 
-/*app.post("/model", (req, res) => {
+app.post("/model", (req, res) => {
   const brand = req.body.brand;
 
   Kar.findOne({ brand: brand }, (err, foundResults) => {
@@ -118,15 +118,14 @@ app.get("/index/:brand/:model/:variant", (req, res) => {
       const model = req.body.model;
       const variant = req.body.variant;
       const newKar = new Kar({
-        brand: brand,
         model: model,
         variant: variant,
       });
       newKar.save((err) => {
-        err ? console.log(err) : res.send("new car created succesfully");
+        err ? console.log(err) : res.send("new car model created succesfully");
       });
     }
   });
-});*/
+});
 
 app.listen(PORT, () => console.log("server started @port 3000"));
