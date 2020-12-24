@@ -141,6 +141,7 @@ app.post("/model", (req, res) => {
       const model = req.body.model;
       const variant = req.body.variant;
       const newKar = new Kar({
+        brand: brand,
         model: model,
         variant: variant,
       });
@@ -162,6 +163,7 @@ app.post("/variant", (req, res) => {
     } else {
       const variant = req.body.variant;
       const newKar = new Kar({
+        brand: brand,
         model: model,
         variant: variant,
       });
