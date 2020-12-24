@@ -32,8 +32,15 @@ app.get("/model", (req, res) => {
   });
 });
 app.get("/variant", (req, res) => {
-  res.render("variant");
+  Kar.find((err, docs) => {
+    if (!err) {
+      res.render("variant", { Kar: docs });
+    } else {
+      console.log("Error in retrieving model list :" + err);
+    }
+  });
 });
+
 //to search a car
 app.post("/index", (req, res) =>
   /*async function () {

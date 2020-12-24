@@ -1,0 +1,55 @@
+<%- include('partials/header') %>
+<div class="container mt-5">
+  <form method="POST" action="/model">
+    <div class="row">
+      <div class="col-sm-3">
+        <label for="exampleInputBrand1" class="form-label">Brand</label>
+
+        <select
+          type="brand"
+          name="brand"
+          class="form-select"
+          placeholder="select brand"
+          aria-describedby="brandHelp"
+        >
+          <% if (Kar) { %> <% Kar.forEach(function (Kar) { %>
+
+          <option><%= Kar.brand %></option>
+
+          <% }) %> <% } %>
+        </select>
+      </div>
+      <div class="col-sm-3">
+        <label for="exampleInputModel1" class="form-label">Model</label>
+        <select
+          type="model"
+          name="model"
+          class="form-select"
+          placeholder="select model"
+          aria-describedby="modelHelp"
+        >
+          <% if (Kar) { %> <% Kar.forEach(function (Kar) { %>
+
+          <option><%= Kar.model %></option>
+
+          <% }) %> <% } %>
+        </select>
+      </div>
+      <div class="col-sm-3">
+        <label for="exampleInputVariant1" class="form-label">Variant</label>
+        <input
+          type="variant"
+          name="variant"
+          class="form-control"
+          id="exampleInputVariant1"
+          placeholder="enter variant"
+        />
+      </div>
+      <div class="col-sm-2">
+        <label class="form-label"></label>
+        <button type="submit" class="btn btn-primary">ADD</button>
+      </div>
+    </div>
+  </form>
+</div>
+<%- include('partials/header') %>
