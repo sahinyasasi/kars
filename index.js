@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Kar = require("./models/kars");
 let app = express();
-app.use("/public", express.static("public"));
+
 mongoose.connect("mongodb://localhost:27017/carsDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
