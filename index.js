@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Kar = require("./models/kars");
 let app = express();
+app.use("/public", express.static("public"));
 mongoose.connect("mongodb://localhost:27017/carsDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -57,25 +58,28 @@ app.post("/index", (req, res) =>
     const model = req.body.model;
     const variant = req.body.variant;
 
-    Kar.find({ brand: brand }, (err, foundResults) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(foundResults);
+    Kar.find(
+      { brand: brand, model: model, variant: variant },
+      (err, foundResults) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(foundResults);
 
-        /*foundResults.forEach((element) => {
+          /*foundResults.forEach((element) => {
           //console.log([foundResults]);
           if (element.model === model) {
             console.log(element);
           }
         });*/
+        }
       }
-    });
+    );
   }
 );
 
 //to get particular brand
-app.get("/index/:brand", (req, res) => {
+app.get("/:brand", (req, res) => {
   Kar.find({ brand: req.params.brand }, (err, foundResults) => {
     if (err) {
       console.log(err);
@@ -85,7 +89,7 @@ app.get("/index/:brand", (req, res) => {
   });
 });
 //to get a particular model
-app.get("/index/:brand/:model", (req, res) => {
+app.get("/:brand/:model", (req, res) => {
   Kar.find(
     { brand: req.params.brand, model: req.params.model },
     (err, foundResults) => {
@@ -98,7 +102,7 @@ app.get("/index/:brand/:model", (req, res) => {
   );
 });
 //to get particular variant
-app.get("/index/:brand/:model/:variant", (req, res) => {
+app.get("/:brand/:model/:variant", (req, res) => {
   Kar.find(
     {
       brand: req.params.brand,
