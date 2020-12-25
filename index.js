@@ -59,24 +59,41 @@ app.post("/index", (req, res) =>
     const brand = req.body.brand;
     const model = req.body.model;
     const variant = req.body.variant;
+    if (brand && model && variant) {
+      Kar.find(
+        { brand: brand, model: model, variant: variant },
+        (err, foundResults) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(foundResults);
 
-    Kar.find(
-      { brand: brand, model: model, variant: variant },
-      (err, foundResults) => {
+            /*foundResults.forEach((element) => {
+            //console.log([foundResults]);
+            if (element.model === model) {
+              console.log(element);
+            }
+          });*/
+          }
+        }
+      );
+    } else if (!model && !variant) {
+      Kar.find({ brand: brand }, (err, foundResults) => {
         if (err) {
           console.log(err);
         } else {
           console.log(foundResults);
-
-          /*foundResults.forEach((element) => {
-          //console.log([foundResults]);
-          if (element.model === model) {
-            console.log(element);
-          }
-        });*/
         }
-      }
-    );
+      });
+    } else if (!variant) {
+      Kar.find({ brand: brand, model: model }, (err, foundResults) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(foundResults);
+        }
+      });
+    }
   }
 );
 
